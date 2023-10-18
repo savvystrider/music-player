@@ -10,3 +10,55 @@ const progress = document.getElementById("progress-bar");
 const songTitle = document.getElementById("song-title");
 const songCover = document.getElementById("song-cover");
 const artist = document.getElementById("artist");
+
+const songs = ["lost-in-city-lights-145038", "forest-lullaby-110624"];
+
+let songIndex = 0;
+
+loadSong(songs[songIndex]);
+
+function loadSong(song) {
+  songTitle.textContent = song;
+  audio.src = `assets/music/${song}.mp3`;
+}
+
+function playSong() {
+  audio.play();
+}
+
+function pauseSong() {
+  audio.pause();
+}
+
+function nextSong() {
+  songIndex++;
+
+  if (songIndex > songs.length - 1) {
+    songIndex = 0;
+  }
+
+  loadSong(songs[songIndex]);
+  audio.play();
+}
+
+function previousSong() {
+  songIndex--;
+
+  if (songIndex < 0) {
+    songIndex = songs.length - 1;
+  }
+
+  loadSong(songs[songIndex]);
+  audio.play();
+}
+
+playBtn.addEventListener("click", function () {
+  if (audio.paused) {
+    audio.play();
+  } else {
+    audio.pause();
+  }
+});
+
+prevBtn.addEventListener("click", previousSong);
+nextBtn.addEventListener("click", nextSong);
