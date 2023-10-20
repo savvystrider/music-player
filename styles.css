@@ -1,0 +1,29 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Inter, serif;
+    background-image: url(./assets/images/bg.jpg);
+    color: white;
+    display: grid;
+    min-height: 100vh;
+    place-content: center;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+.music-player {
+    background-color: #212936;
+    padding: 1em;
+    border-radius: 1em;
+    width: 50rem;
+    max-width: 40%;
+    margin-inline: auto;
+    text-align: center;
+}
