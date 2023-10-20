@@ -18,7 +18,15 @@ let songIndex = 0;
 loadSong(songs[songIndex]);
 
 function loadSong(song) {
-  songTitle.textContent = song;
+  if (song === "lost-in-city-lights-145038") {
+    songTitle.textContent = "Lost in the City Lights";
+    artist.textContent = "Cosmo Sheldrake";
+    songCover.src = `assets/images/cover-1.png`;
+  } else {
+    songTitle.textContent = "Forest Lullaby";
+    artist.textContent = "Lesfm";
+    songCover.src = `assets/images/cover-2.png`;
+  }
   audio.src = `assets/music/${song}.mp3`;
 }
 
