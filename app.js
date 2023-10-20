@@ -4,6 +4,10 @@ const playBtn = document.getElementById("play");
 const prevBtn = document.getElementById("previous");
 const nextBtn = document.getElementById("next");
 
+const timerContainer = document.getElementById("timer-container");
+const timeAsc = document.getElementById("time-asc");
+const timeDesc = document.getElementById("time-desc");
+
 const progressContainer = document.getElementById("progress-container");
 const progress = document.getElementById("progress-bar");
 
@@ -70,3 +74,34 @@ playBtn.addEventListener("click", function () {
 
 prevBtn.addEventListener("click", previousSong);
 nextBtn.addEventListener("click", nextSong);
+
+audio.addEventListener("timeupdate", setTime);
+
+timeDesc.textContent = "0";
+
+function setTime() {
+  const minutes = Math.floor(audio.currentTime / 60);
+  const seconds = Math.floor(audio.currentTime % 60);
+
+  const minuteValue = minutes.toString().padStart(2, "0");
+  const secondValue = seconds.toString().padStart(2, "0");
+
+  const audioTime = `${minuteValue}: ${secondValue}`;
+  timeAsc.textContent = audioTime;
+
+  if (!isNaN(audio.duration)) {
+    const remainingTime = audio.duration - audio.currentTime;
+    const remainingMinutes = Math.floor(remainingTime / 60);
+    const remainingSeconds = Math.floor(remainingTime % 60);
+    const remainingMinuteValue = remainingMinutes.toString().padStart(2, "0");
+    const remainingSecondValue = remainingSeconds.toString().padStart(2, "0");
+
+    const remainingAudioTime = `-${remainingMinuteValue}:${remainingSecondValue}`;
+    timeDesc.textContent = remainingAudioTime;
+  } else {
+    timeDesc.textContent = "0:00";
+  }
+
+  const barLength = (audio.currentTime / audio.duration) * 100;
+  progress.style.width = `${barLength}%`;
+}

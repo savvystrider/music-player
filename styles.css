@@ -27,3 +27,15 @@ img {
     margin-inline: auto;
     text-align: center;
 }
+
+.progress-bar {
+    height: 5px;
+    background-color: red;
+    width: 0;
+}
+
+.timer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
