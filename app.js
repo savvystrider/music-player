@@ -8,7 +8,7 @@ const timerContainer = document.getElementById("timer-container");
 const timeAsc = document.getElementById("time-asc");
 const timeDesc = document.getElementById("time-desc");
 
-const progressContainer = document.getElementById("progress-container");
+const progressContainer = document.querySelector(".progress-container");
 const progress = document.getElementById("progress-bar");
 
 const songTitle = document.getElementById("song-title");
@@ -105,3 +105,12 @@ function setTime() {
   const barLength = (audio.currentTime / audio.duration) * 100;
   progress.style.width = `${barLength}%`;
 }
+
+function setProgress(event) {
+  const width = this.clientWidth;
+  const clickX = event.offsetX;
+  const duration = audio.duration;
+  audio.currentTime = (clickX / width) * duration;
+}
+
+progressContainer.addEventListener("click", setProgress);
